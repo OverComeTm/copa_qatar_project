@@ -3,7 +3,6 @@
 // Curso: Engenharia de Software
 
 import 'package:flutter/material.dart';
-import 'ui/lista_equipes.dart';
 import 'ui/estrutura.dart';
 
 void main() => runApp(MyApp());

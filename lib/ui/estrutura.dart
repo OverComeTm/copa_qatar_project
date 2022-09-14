@@ -1,6 +1,8 @@
 //importar statefulwidget
 import 'package:flutter/material.dart';
-import './lista_equipes.dart';
+import '../tabs/lista_equipes.dart';
+import '../tabs/lista_grupos.dart';
+import '../tabs/lista_jogos.dart';
 
 class Estrutura extends StatefulWidget {
   const Estrutura({Key? key}) : super(key: key);
@@ -8,6 +10,12 @@ class Estrutura extends StatefulWidget {
 }
 
 class _EstruturaState extends State<Estrutura> {
+  final List<Widget> _abas = [
+    ListaEquipes(), //0
+    ListaGrupos(), //1
+    ListaJogos() //2
+  ];
+  int _indiceAba = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +23,7 @@ class _EstruturaState extends State<Estrutura> {
         // The title text which will be shown on the action bar
         title: Text("Copa do Mundo Catar 2022"),
       ),
-      body: ListaEquipes(),
+      body: _abas[_indiceAba],
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.shield), label: "Equipes"),
@@ -26,6 +34,12 @@ class _EstruturaState extends State<Estrutura> {
         selectedItemColor: Colors.orange,
         unselectedItemColor: Colors.white,
         backgroundColor: Colors.brown,
+        currentIndex: _indiceAba,
+        onTap: (int index) {
+          setState(() {
+            _indiceAba = index;
+          });
+        },
       ),
     );
   }
